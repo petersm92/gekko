@@ -18,11 +18,21 @@ Checker.prototype.notValid = function(conf) {
 Checker.prototype.getExchangeCapabilities = function(slug) {
   var capabilities;
 
+<<<<<<< HEAD
   if(!fs.existsSync(dirs.exchanges + slug + '.js'))
     util.die(`Gekko does not know exchange "${slug}"`);
 
   var Trader = require(dirs.exchanges + slug);
   capabilities = Trader.getCapabilities();
+=======
+  try {
+    var Trader = require(dirs.exchanges + slug);
+    capabilities = Trader.getCapabilities();
+  } catch (e) {
+    console.log(e);
+    capabilities = null;
+  }
+>>>>>>> origin/debug/kraken
 
   return capabilities;
 }
